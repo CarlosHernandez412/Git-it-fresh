@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script type="text/javascript" src="javascript.js" ></script>
+    <style>
+        body,h1,h2,h3,h4,h5,h6 {font-family: 'Montserrat', sans-serif;}
+        body, html {
+            height: 100%;
+            color: white;
+            line-height: 1.8;
+        }
+
+        .header {
+            color: rgb(211, 211, 14);
+            text-decoration: none;
+            font-size: 120%;
+            font-weight: bold;
+        }
+
+        a.header:link{
+            color: rgb(211, 211, 14);
+        }
+         
+        a.header:visited{
+            color: rgb(211, 211, 14);
+        }
+
+        a.header:hover {
+            background-color:rgb(211, 211, 14);
+            color: black;
+        }
+
+        a.header:active {
+            color: rgb(211, 211, 14);
+        }
+
+        .img {
+            display: block;
+            margin: auto;
+            text-align: center;
+        }
+
+        footer {
+            color:black;
+        }
+    </style>
+</head>
+    <body onload="init()">
+        <header>
+            <div class="w3-top">
+                <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+                  <a href="index.html" class="w3-bar-item w3-button"><img src="images/Logo.png" alt="logo" height="50" width="75"/></a>
+                  <!-- Float links to the right. Hide them on small screens -->
+                  <div class="w3-right w3-hide-small">
+                    <a href="index.html" class="w3-bar-item header">Home</a>
+                    <a href="items.html" class="w3-bar-item header">Meals</a>
+                    <a href="contactus.html" class="w3-bar-item header">Contact</a>
+                    <a href="checkout.html" class="w3-bar-item header">Checkout</a>
+                    <a href="items.html#myList"><img src="images/cartlogo.png" alt="cart" height="50" width="60"></a>
+                    
+                  </div>
+                </div>
+            </div>
+        </header>
+    <!-- First Parallax Image with Logo Text -->
+            <div class="bgimg-1 container" id="home">
+                <div style="white-space:nowrap;">
+                <span class="centered"><span style="font-size: 100%; background-color:rgb(211, 211, 14);">Welcome to Go Fresh Delivery!</span></span>
+                </div>
+            </div>
+        <section>
+            <div class="w3-row w3-padding-64" id="about">
+                <div>
+                <p class="pfont">Go Fresh Delivery provides organic food, and quick healthy meals. We offer recipes and prepared meals.
+                We also have several options for vegeterian, vegan, and gluten-free diets. Sign up today to receive your first fresh delivery!</p>
+                </div>
+            </div>
+
+            <video class="video" autoplay loop poster="images/Fruity.jpg">
+                //<source src="images/Fruits.mp4" type="video/mp4">
+               // <source src="images/Fruits.ogv" type="video/ogv">
+                //<source src="images/Fruits.webm" type="video/webm">
+            </video>
+
+    <br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br />
+    <br /><br />
+
+            <p class="pfont">We Provide Groceries to Bakersfield and surrounding cities. It's Freshness To Go!.</p>
+            <a href="items.html"><img src="images/button.jpg" alt="button" height="60px" width="300px" class="img"></a>
+        </section>
+        <footer>
+            <p>Images taken from Google</p>
+        </footer>
+    </body>
+</html>
+
