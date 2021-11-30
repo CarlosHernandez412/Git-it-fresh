@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script type="text/javascript" src="javascript.js"></script>
+    <script type="text/javascript" > 
+        function receive() {
+            var final = JSON.parse(sessionStorage.getItem("gt"));
+           document.getElementById("copy").innerHTML = "Your total is = " + final.toFixed(2);
+        }
+    </script>
+    <style>
+        .header {
+            color: rgb(165, 165, 165);
+            text-decoration: none;
+            font-size: 120%;
+            font-weight: bold;
+        }
+
+        a.header:link{
+            color: rgb(165, 165, 165);
+        }
+         
+        a.header:visited{
+            color: rgb(165, 165, 165);
+        }
+
+        a.header:hover {
+            background-color:rgb(165, 165, 165);
+            color: black;
+        }
+
+        a.header:active {
+            color: rgb(165, 165, 165);
+        }
+
+        a.cart:hover {
+            background-color: rgb(165, 165, 165);
+        }
+
+        h3 {
+            font-weight: bolder;
+        }
+
+        td > p input{
+           display: inline; 
+           margin-left: -5%;
+        }
+
+        section {
+            margin-left: 8%;
+        }
+    </style>
+</head>
+    <body onload="receive()">
+        <header>
+            <div class="w3-top">
+                <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+                  <a href="index.html" class="w3-bar-item w3-button"><img src="images/Logo.png" alt="logo" height="50" width="75"/></a>
+                  <!-- Float links to the right. Hide them on small screens -->
+                  <div class="w3-right w3-hide-small">
+                    <a href="index.html" class="w3-bar-item header">Home</a>
+                    <a href="items.html" class="w3-bar-item header">Items</a>
+                    <a href="contactus.html" class="w3-bar-item header">Contact Us!</a>
+                    <a href="checkout.html" class="w3-bar-item header">Checkout</a>
+                    <a href="items.html#myList"><img src="images/cart.png" alt="cart" height="50" width="60"></a>
+                    <button onclick="leave()">Clear Cart</button>
+                  </div>
+                </div>
+              </div>
+            </header>
+        <section class="margin">
+        <div>
+            <p id="copy"></p>
+        </div>
+        <div>
+            <table style="float:left; ">
+                <caption><h3>Checkout as Guest</h3></caption>   
+                    <tr>
+                        <td>
+                            <p>First Name:</p><input type="text" id="first" size="10"/>
+                            <p>Last Name:</p><input type="text" id="last" size="10"/>
+        
+                            <p>Address:</p> <input type="text" id="address"/>
+        
+                            <p>City:</p> <input type="text" id="city" size="15"/>
+                            <p>State:</p> <input type="text" id="state" size="6"/>
+                            <p>Zip Code:</p> <input type="text" id="zip" size="8"/>
+                        </td>
+                        <td style="vertical-align: top">
+                            <p>Card Number: </p><input type="text" id="card"/>
+                            <p>Expiration Date: </p><input type="text" id="date"/>
+                            <p>CVC: </p><input type="text" maxlength="3" id="cvc"/>
+        
+                            <p>Choose Delivery Day: </p>
+                                <select>
+                                    <option>Monday</option>
+                                    <option>Tuesday</option>
+                                    <option>Wednesday</option>
+                                    <option>Thursday</option>
+                                    <option>Friday</option>
+                                    <option>Saturday</option>
+                                </select>
+                            <br />
+                            <br />
+                            <br />
+                            <a href="reload.html"><button onclick="finish()">Place Order</button></a>
+                    </td>
+            </table>
+            <table style="padding-left: 5%;" class="screen">
+                <caption><h3>Sign Up</h3></caption> 
+                    <tr>
+                        <td>
+                            <p>First Name:</p><input type="text" id="first" size="10"/>
+                            <p>Last Name:</p><input type="text" id="last" size="10"/>
+            
+                            <p>Address:</p> <input type="text" id="address"/>
+            
+                            <p>City:</p> <input type="text" id="city" size="15"/>
+                            <p>State:</p> <input type="text" id="state" size="6"/>
+                            <p>Zip Code:</p> <input type="text" id="zip" size="8"/>
+                        </td>
+                        <td style="vertical-align: top">
+                            <p>Create Username: </p><input type="text" id="user"/>
+                            <p>Create Password: </p><input type="password" id="password"/>
+                            <p>Email: </p><input type="email" id="email"/>
+        
+                            <p>Choose Delivery Day: 
+                                <select>
+                                    <option>Monday</option>
+                                    <option>Tuesday</option>
+                                    <option>Wednesday</option>
+                                    <option>Thursday</option>
+                                    <option>Friday</option>
+                                    <option>Saturday</option>
+                                </select>
+                            </p>
+        
+                            <p>Would Like to Set up a Weekly Delivery Plan?</p>
+                            <select>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                            <br />
+                            <br />
+                            <br />
+                            <a href="reload.html"><button onclick="finish()">Place Order</button></a>
+                        </td>
+                    </tr>
+            </table>
+        </div>
+        </section>
+    </body>
+</html>
