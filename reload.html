@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="2; URL=index.html">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script type="text/javascript" src="javascript.js"></script>
+    <style>
+        .header {
+            color: rgb(4, 134, 91);
+            text-decoration: none;
+            font-size: 120%;
+            font-weight: bold;
+        }
+
+        a.header:link{
+            color: rgb(4, 134, 91);
+        }
+         
+        a.header:visited{
+            color: rgb(4, 134, 91);
+        }
+
+        a.header:hover {
+            background-color:rgb(4, 134, 91);
+            color: black;
+        }
+
+        a.header:active {
+            color: rgb(4, 134, 91);
+        }
+        .video {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: -50px;
+            width: 50%;
+        }
+
+        .img {
+            display: block;
+            margin: auto;
+            text-align: center;
+        }
+
+        section {
+            text-align: center;
+            margin-top: 15%;
+        }
+
+        h1, h2, h3 {
+            color:rgb(4, 134, 91);
+            font-weight: bolder;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 250%;
+        }
+    </style>
+</head>
+    <body>
+        <header>
+            <div class="w3-top">
+                <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+                  <a href="index.html" class="w3-bar-item w3-button"><img src="images/Logo.png" alt="logo" height="50" width="75"/></a>
+                  <!-- Float links to the right. Hide them on small screens -->
+                  <div class="w3-right w3-hide-small">
+                    <a href="index.html" class="w3-bar-item header">Home</a>
+                    <a href="items.html" class="w3-bar-item header">Items</a>
+                    <a href="contact.html" class="w3-bar-item header">Contact Us!</a>
+                    <a href="javascript:alert('you clicked')" class="w3-bar-item header">Checkout</a>
+                    <a href="items.html#myList"><img src="images/redcart.png" alt="cart" height="50" width="60"></a>
+                    <button onclick="leave()">Clear Cart</button>
+                  </div>
+                </div>
+              </div>
+            </header>
+        <section>
+        <h1>Thank You for your business!</h1>
+        <a href="index.html"><h3>Click here to go to homescreen</h3></a>
+        </section>
+    </body>
+</html>
