@@ -157,7 +157,7 @@ function addBanana(){
         document.getElementById("Bananaavailable").innerHTML = "Quantity must be between 1 and 25.";
     }
     else {
-        var full = item + " x Garlic Parmesan Banana " + price + " = " + total.toFixed(2);
+        var full = item + " x Banana " + price + " = " + total.toFixed(2);
         arraylist.push(full);
         var textnode = document.createTextNode(full);
         node.appendChild(textnode);

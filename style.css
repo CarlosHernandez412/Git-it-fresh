@@ -80,7 +80,7 @@ and (orientation : portrait) {
 
 /* First image (Logo. Full height) */
     .bgimg-1 {
-        background-image: url('images/Logo.PNG');
+        background-image: url('images/produce.jpg');
         min-height: 100%;
 }
     
