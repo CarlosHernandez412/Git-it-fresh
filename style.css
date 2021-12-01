@@ -1,0 +1,240 @@
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+}
+ 
+/* Smartphones (landscape) ----------- */
+@media only screen
+and (min-width : 321px) {
+}
+ 
+/* Smartphones (portrait) ----------- */
+@media only screen
+and (max-width : 320px) {
+}
+ 
+/* iPads (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px) {
+}
+ 
+/* iPads (landscape) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : landscape) {
+}
+ 
+/* iPads (portrait) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait) {
+}
+ 
+/* Desktops and laptops ----------- */
+@media only screen
+and (min-width : 1224px) {
+}
+ 
+/* Large screens ----------- */
+@media only screen
+and (min-width : 1824px) {
+}
+ 
+/* iPhone 5 (portrait & landscape)----------- */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px) {
+}
+ 
+/* iPhone 5 (landscape)----------- */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px)
+and (orientation : landscape) {
+}
+ 
+/* iPhone 5 (portrait)----------- */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px)
+and (orientation : portrait) {
+}
+
+.spanimg {
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+/* Create a Parallax Effect */
+       .bgimg-1, .bgimg-2, .bgimg-3 {
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+}
+
+/* First image (Logo. Full height) */
+    .bgimg-1 {
+        background-image: url('images/Logo.PNG');
+        min-height: 100%;
+}
+    
+/* Second image (Portfolio) */
+    .bgimg-2 {
+        background-image: url("images/Fruits.gif");
+        min-height: 400px;
+        width: 100%;
+}
+    
+/* Third image (Contact) */
+    .bgimg-3 {
+        background-image: url("images/Fruits.gif");
+        min-height: 400px;
+}
+    
+    .w3-wide {letter-spacing: 10px;}
+    .w3-hover-opacity {cursor: pointer;}
+    
+/* Turn off parallax scrolling for tablets and phones */
+    @media only screen and (max-device-width: 1024px) {
+        .bgimg-1, .bgimg-2, .bgimg-3 {
+            background-attachment: scroll;
+    }
+}
+
+/* Container holding the image and the text */
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+/* Centered text */
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(0, 88, 55);
+    color: white;
+    font-size: 350%;
+    font-weight: bolder;
+}
+
+.video {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    left: 50%;
+    position: absolute;
+    width: 20%;
+    -webkit-transform: translateX(-50%) translateY(-50%) translateZ(-1px) scale(2);
+    -moz-transform: translateX(-50%) translateY(-50%) translateZ(-1px) scale(2);
+    transform: translateX(-50%) translateY(-50%) translateZ(-1px) scale(2);
+    z-index: -99
+}
+
+.pfont {
+    margin-top: -10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 300%;
+    font-weight: bold;
+    color: rgb(0, 88, 55);
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    font-size: 75%;
+}
+
+.h2 {
+    text-align: center;
+    text-decoration: underline;
+    font-weight: bold;
+    background-color: rgb(0, 88, 55);
+}
+
+.h3 {
+    word-spacing: -4px;
+}
+
+.word {
+    word-spacing: -7px;
+}
+
+.space {
+    word-spacing: -4px;
+}
+
+.margin {
+    margin-top: 100px;
+}
+
+.space {
+    padding-left: 20px;
+    padding-right: 20px;
+    word-spacing: 2px;
+}
+
+.col1 {
+    display: table-cell;
+    text-align: justify;
+}
+
+#myList {
+    position: absolute;
+    left: 25%;
+    display: table;
+    margin: auto;  
+    width: 50%;
+    height: 80%;
+    text-align: center;
+    list-style-type: none;
+}
+
+.price {
+    text-indent: 675px;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 200%;
+    color: rgb(0, 88, 55);
+}
+
+caption {
+    text-align: center;
+}
+
+table {
+    margin: auto;
+}
+
+.button {
+    border: solid 2px green;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+#copy {
+    color:rgb(0, 88, 55);
+    margin-left: 30%;
+    font-size: 150%;
+    font-weight: bold;
+}
+
+input {
+    border-radius:10px;
+}
+
+.screen {
+   padding: 0%;
+}
