@@ -7,6 +7,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="style.css"/>
     <script type="text/javascript" src="javascript.js" ></script>
+    <script>
+        $.post("database.php", args)
+        .done(function(result, status, xhr) {
+            if (status == "success") {
+                rd.innerHTML = result;
+            }
+            else {
+                rd.innerHTML = "Something went wrong: " + status + ", " + result;
+            }
+        })
+        .fail(function (xhr, status, error){
+            rd.innterHTML = status + ", " + error;
+        });
+    </script>
     <style>
         body,h1,h2,h3,h4,h5,h6 {font-family:  Agrandir, Verdana, Geneva, sans-serif;}
         body, html {
@@ -99,5 +113,6 @@
             <p>Images taken from Google</p>
         </footer>
     </body>
+    
 </html>
 
