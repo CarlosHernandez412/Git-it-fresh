@@ -42,17 +42,18 @@
             background-color: rgb(0, 88, 55);
         }
 
-        h3 {
+        h2 {
             font-weight: bolder;
+            padding-top: 45px;
         }
 
         td > p input{
-           display: inline; 
-           margin-left: -5%;
+            display: inline; 
+            margin-left: -5%;
         }
 
         section {
-            margin-left: 8%;
+            text-align: center;
         }
     </style>
 </head>
@@ -65,87 +66,56 @@
                   <div class="w3-right w3-hide-small">
                     <a href="index.html" class="w3-bar-item header">Home</a>
                     <a href="items.html" class="w3-bar-item header">Items</a>
-                     <a href="user.html" class="w3-bar-item header">Employee</a>
+                    <a href="employee.html" class="w3-bar-item header">Employee</a>
+                    <a href="customer.html" class="w3-bar-item header">Customer</a>
                     <a href="checkout.html" class="w3-bar-item header">Checkout</a>
                     <a href="items.html#myList"><img src="images/cart.jpg" alt="cart" height="50" width="60"></a>
                     <button onclick="leave()">Clear Cart</button>
-                  </div>
                 </div>
-              </div>
-            </header>
-        <section class="margin">
+            </div>
+        </div>
+    </header>
+    <section class="margin">
         <div>
             <p id="copy"></p>
         </div>
-        <div>
-            <table style="float:left; ">
-                <caption><h3>Checkout as Guest</h3></caption>   
-                    <tr>
-                        <td>
-                            <p>First Name:</p><input type="text" id="first" size="10"/>
-                            <p>Last Name:</p><input type="text" id="last" size="10"/>
+            <table>
+                <caption><h2>Checkout as Guest</h2></caption>   
+                <tr>
+                    <td>
+                        <p>First Name:</p><input type="text" id="first" size="10"/>
+                        <p>Last Name:</p><input type="text" id="last" size="10"/>
         
-                            <p>Address:</p> <input type="text" id="address"/>
+                        <p>Address:</p> <input type="text" id="address"/>
         
-                            <p>City:</p> <input type="text" id="city" size="15"/>
-                            <p>State:</p> <input type="text" id="state" size="6"/>
-                            <p>Zip Code:</p> <input type="text" id="zip" size="8"/>
-                        </td>
-                        <td style="vertical-align: top">
-                            <p>Card Number: </p><input type="text" id="card"/>
-                            <p>Expiration Date: </p><input type="text" id="date"/>
-                            <p>CVC: </p><input type="text" maxlength="3" id="cvc"/>
-        
-                            <p>Choose Delivery Day: </p>
-                                <select>
-                                    <option>Monday</option>
-                                    <option>Tuesday</option>
-                                    <option>Wednesday</option>
-                                    <option>Thursday</option>
-                                    <option>Friday</option>
-                                    <option>Saturday</option>
-                                </select>
-                            <br />
-                            <br />
-                            <br />
-                            <a href="reload.html"><button onclick="finish()">Place Order</button></a>
+                        <p>City:</p> <input type="text" id="city" size="15"/>
+                        <p>State:</p> <input type="text" id="state" size="6"/>
+                        <p>Zip Code:</p> <input type="text" id="zip" size="8"/>
                     </td>
-            </table>
-            <table style="padding-left: 5%;" class="screen">
-                <caption><h3>Sign Up</h3></caption> 
-                    <tr>
-                        <td>
-                            <p>First Name:</p><input type="text" id="first" size="10"/>
-                            <p>Last Name:</p><input type="text" id="last" size="10"/>
-            
-                            <p>Address:</p> <input type="text" id="address"/>
-            
-                            <p>City:</p> <input type="text" id="city" size="15"/>
-                            <p>State:</p> <input type="text" id="state" size="6"/>
-                            <p>Zip Code:</p> <input type="text" id="zip" size="8"/>
-                        </td>
-                        <td style="vertical-align: top">
-                            <p>Create Username: </p><input type="text" id="user"/>
-                            <p>Create Password: </p><input type="password" id="password"/>
-                            <p>Email: </p><input type="email" id="email"/>
+                    <td style="vertical-align: top">
+                        <p>Card Number: </p><input type="text" id="card"/>
+                        <p>Expiration Date: </p><input type="text" id="date"/>
+                        <p>CVC: </p><input type="text" maxlength="3" id="cvc"/>
         
-                             <p>Choose Delivery Day: </p>
-                                <select>
-                                    <option>Monday</option>
-                                    <option>Tuesday</option>
-                                    <option>Wednesday</option>
-                                    <option>Thursday</option>
-                                    <option>Friday</option>
-                                    <option>Saturday</option>
-                                </select>
-                            <br />
-                            <br />
-                            <br />
-                            <a href="reload.html"><button onclick="finish()">Place Order</button></a>
-                        </td>
-                    </tr>
-            </table>
-        </div>
+                        <p>Choose Delivery Day: </p>
+                        <select>
+                            <option>Monday</option>
+                            <option>Tuesday</option>
+                            <option>Wednesday</option>
+                            <option>Thursday</option>
+                            <option>Friday</option>
+                            <option>Saturday</option>
+                        </select>
+                        <br />
+                        <br />
+                        <br />
+                        <a href="reload.html"><button onclick="finish()">Place Order</button></a>
+                    </td>
+                </table>
+            </div>
+            <br />
+            <a href="customer.html" class="w3-bar-item header">Already have an Account?</a>
+            <br />
         </section>
     </body>
-</html>
+    </html>
