@@ -6,19 +6,26 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous">
+    </script>
     <script type="text/javascript" src="javascript.js" ></script>
     <script>
+        args = {
+            "GetProducts": true
+        };
         $.post("database.php", args)
         .done(function(result, status, xhr) {
             if (status == "success") {
-                rd.innerHTML = result;
+                console.log(result);
             }
             else {
-                rd.innerHTML = "Something went wrong: " + status + ", " + result;
+                console.error(result);
             }
         })
         .fail(function (xhr, status, error){
-            rd.innterHTML = status + ", " + error;
+            console.error(error);
         });
     </script>
     <style>
