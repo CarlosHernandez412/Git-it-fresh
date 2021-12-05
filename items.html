@@ -6,7 +6,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="style.css"/>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <script type="text/javascript" src="javascript.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous">
+    </script>
+    <!-- <script type="text/javascript" src="javascript.js"></script> -->
     <script type="text/javascript">
         function save(){
                 sessionStorage.setItem("gt",grandtotal);
@@ -18,6 +22,48 @@
                 sessionStorage.arraylist = JSON.stringify(arraylist);
                 location.reload();
         }   
+
+function init() {
+    args = {
+        "GetProducts": true
+    };
+    $.post("database.php", args)
+    .done(function(result, status, xhr) {
+        if (status == "success") {
+            // Iterate over rows, populate items on page
+            let db_items = document.getElementById("database_items");
+
+            let db_categories = {};
+
+            for(let item of result) {
+                let categoryContainer = null;
+                if (item.Category in db_categories) {
+                    categoryContainer = db_categories[item.Category];
+                }
+                else {
+                    categoryContainer = document.createElement("div");
+                    db_categories[item.Category] = categoryContainer;
+                    db_items.appendChild(categoryContainer);
+
+                    categoryContainer.innerHTML = `<H2 class='h2'>${item.Category}</H2>`;
+                }
+
+                let itemDiv = document.createElement("div");
+                itemDiv.className = "w3-quarter";
+                itemDiv.innerHTML = `<h3>${item.Name}</h3><p>\$${item.Price}, ${item.NumInStock} in stock</p>`;
+                categoryContainer.appendChild(itemDiv);
+
+                console.log(item);
+            }
+        }
+        else {
+            console.error(result);
+        }
+    })
+    .fail(function (xhr, status, error){
+        console.error(error);
+    });
+}
     </script>
     <style>
     .header {
@@ -196,6 +242,9 @@
                 <p id="grand"></p>
             </ul>
         </div>
+    </section>
+    <section id="database_items">
+
     </section>
 </body>
 </html>

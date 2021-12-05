@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="style.css"/>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous">
+    </script>
     <script type="text/javascript" src="javascript.js"></script>
     <style>
         .header {
@@ -80,7 +84,7 @@
         <section>
             <div>
                 <h2 style="color:black;">Sign-In</h2>
-                <form>
+                <form action="database.php" method="post">
                     <p>Email: <input type="email"></p>
                     <p>Password: <input type="password" id="password"/></p>
                     <button type="submit" name="login">Login</button>
@@ -107,7 +111,7 @@
                     <p>Email: </p><input type="email" id="email"/>
                     <p>Create Password: </p><input type="password" id="password"/>
                     <br />
-                    <a href="customer.html"><button onclick="finish()">Sign up</button></a>
+                    <a href="customer.html" name="StartRegister"><button onclick="finish()">Sign up</button></a>
                 </td>
             </tr>
         </table>
