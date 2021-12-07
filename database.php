@@ -37,7 +37,7 @@ if (isset($_POST['StartRegister'])) {
         $_SESSION["error"] = "Email and/or Password cannot be empty!";
         header("Location: customer.html");
     }
-    $validation = $db->prepare("SELECT * FROM Person NATURAL JOIN Client Where Email =?");
+    $validation = $db->prepare("SELECT Client.Customer_ID, Person .* FROM Person NATURAL JOIN Client Where Email =?");
     if (!$validation) {
         echo "Error getting result: " . mysqli_error($db);
         die();
@@ -55,7 +55,7 @@ if (isset($_POST['StartRegister'])) {
 
             if ($result_count > 0) {
                 $_SESSION["error"] = "Error: Email " . $Email . "already registred";
-                header("Location: customer.html");
+                header("Location: error.php");
             }
             else {
                 echo "Registering!";
@@ -65,7 +65,7 @@ if (isset($_POST['StartRegister'])) {
 				$res_LName, $res_PhoneNumber, $res_State, $res_City, $res_Zipcode, $res_Street);
                 if ($statment->execute()) {
                     echo "Registered!";
-                    header("Location: customer.html");
+                    header("Location: error.php");
                 }
                 else {
                     echo "Registration failed: " . mysqli_error($db);
@@ -74,7 +74,7 @@ if (isset($_POST['StartRegister'])) {
             }
         }
 		else {
-			echo "Error executing query: " . mysqli_error($db);
+			echo "Error executing query from registration: " . mysqli_error($db);
 			die();
 		}
 	}
@@ -100,7 +100,7 @@ if (isset($_POST['login'])) {
 
             if ($result_count > 0) {
                 $_SESSION["error"] = "Error: Email and/or password is incorrect!";
-                header("Location: customer.html");
+                header("Location: error.php");
             }
             else {
                 //Verify user with password
@@ -113,12 +113,12 @@ if (isset($_POST['login'])) {
 				}
                 else {
                     $_SESSION["error"] = "Error: Email and/or password is incorrect!";
-                    header("Location: customer.html");
+                    header("Location: error.php");
                 }
             }
         }
 		else {
-			echo "Error executing query: " . mysqli_error($db);
+			echo "Error executing query from Customer login: " . mysqli_error($db);
 			die();
 		}
 	}
@@ -144,7 +144,7 @@ if (isset($_POST['emp_login'])) {
 
             if ($result_count > 0) {
                 $_SESSION["error"] = "Error: Email and/or password is incorrect!";
-                header("Location: employee.html");
+                header("Location: error.php");
             }
             else {
                 //Verify user with password
@@ -153,16 +153,16 @@ if (isset($_POST['emp_login'])) {
 					$SESSION['Employee_ID'] = $res_Employee_ID;
 					$SESSION['Email'] = $res_Email;
 
-					header("Location: index.html");
+					header("Location: error.php");
 				}
                 else {
                     $_SESSION["error"] = "Error: Email and/or password is incorrect!";
-                    header("Location: employee.html");
+                    header("Location: error.php");
                 }
             }
         }
 		else {
-			echo "Error executing query: " . mysqli_error($db);
+			echo "Error executing query from Employee login: " . mysqli_error($db);
 			die();
 		}
 	}
