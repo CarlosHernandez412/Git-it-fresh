@@ -1,250 +1,165 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
-    </script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous">
-    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+        </script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous">
+        </script>
     <!-- <script type="text/javascript" src="javascript.js"></script> -->
     <script type="text/javascript">
-        function save(){
-                sessionStorage.setItem("gt",grandtotal);
-                sessionStorage.arraylist = JSON.stringify(arraylist);
-                window.location.href = "checkout.html";
-        }  
-        function savecart(){
-                sessionStorage.setItem("gt",grandtotal);
-                sessionStorage.arraylist = JSON.stringify(arraylist);
-                location.reload();
-        }   
-
-function init() {
-    args = {
-        "GetProducts": true
-    };
-    $.post("database.php", args)
-    .done(function(result, status, xhr) {
-        if (status == "success") {
-            // Iterate over rows, populate items on page
-            let db_items = document.getElementById("database_items");
-
-            let db_categories = {};
-
-            for(let item of result) {
-                let categoryContainer = null;
-                if (item.Category in db_categories) {
-                    categoryContainer = db_categories[item.Category];
-                }
-                else {
-                    categoryContainer = document.createElement("div");
-                    db_categories[item.Category] = categoryContainer;
-                    db_items.appendChild(categoryContainer);
-
-                    categoryContainer.innerHTML = `<H2 class='h2'>${item.Category}</H2>`;
-                }
-
-                let itemDiv = document.createElement("div");
-                itemDiv.className = "w3-quarter";
-                itemDiv.innerHTML = `<h3>${item.Name}</h3><p>\$${item.Price}, ${item.NumInStock} in stock</p>`;
-                categoryContainer.appendChild(itemDiv);
-
-                console.log(item);
-            }
+        function save() {
+            sessionStorage.setItem("gt", grandtotal);
+            sessionStorage.arraylist = JSON.stringify(arraylist);
+            window.location.href = "checkout.html";
         }
-        else {
-            console.error(result);
+        function savecart() {
+            sessionStorage.setItem("gt", grandtotal);
+            sessionStorage.arraylist = JSON.stringify(arraylist);
+            location.reload();
         }
-    })
-    .fail(function (xhr, status, error){
-        console.error(error);
-    });
-}
+
+        function init() {
+            args = {
+                "GetProducts": true
+            };
+            $.post("database.php", args)
+                .done(function (result, status, xhr) {
+                    if (status == "success") {
+                        // Iterate over rows, populate items on page
+                        let db_items = document.getElementById("database_items");
+
+                        let db_categories = {};
+
+                        for (let item of result) {
+                            let categoryContainer = null;
+                            if (item.Category in db_categories) {
+                                categoryContainer = db_categories[item.Category];
+                            }
+                            else {
+                                categoryContainer = document.createElement("div");
+                                db_categories[item.Category] = categoryContainer;
+                                db_items.appendChild(categoryContainer);
+
+                                categoryContainer.innerHTML = `<div class="w3-row-padding w3-padding-16 w3-center">
+                                    <h2 class="h2">${item.Category}</h2>
+                                    </div>`;
+                            }
+
+                            let itemDiv = document.createElement("div");
+                            itemDiv.className = "w3-quarter";
+                            itemDiv.innerHTML = `<div class="w3-row-padding w3-padding-16 w3-center">
+                                <h3>${item.Name}<p>\$${item.Price}</p></h3>
+                                <h6>Enter Quantity: <input type="number" size="4"></h6>
+                                <p><button>Add to Cart</button></p>
+                                <p><button><a href="cart.html">Go to Cart</a></button></p>
+                                <p>${item.NumInStock} in stock</p></div>`;
+                            categoryContainer.appendChild(itemDiv);
+
+                            console.log(item);
+                        }
+                    }
+                    else {
+                        console.error(result);
+                    }
+                })
+                .fail(function (xhr, status, error) {
+                    console.error(error);
+                });
+        }
     </script>
     <style>
-    .header {
-        color: rgb(0, 88, 55);
-        text-decoration: none;
-        font-size: 120%;
-        font-weight: bold;
-    }
+        .header {
+            color: rgb(0, 88, 55);
+            text-decoration: none;
+            font-size: 120%;
+            font-weight: bold;
+        }
 
-    a.header:link{
-        color: rgb(0, 88, 55);
-    }
-         
-    a.header:visited{
-        color: rgb(0, 88, 55);
-    }
+        a.header:link {
+            color: rgb(0, 88, 55);
+        }
 
-    a.header:hover {
-        background-color:rgb(0, 88, 55);
-        color: black;
-    }
+        a.header:visited {
+            color: rgb(0, 88, 55);
+        }
 
-    a.header:active {
-        color: rgb(0, 88, 55);
-    }
+        a.header:hover {
+            background-color: rgb(0, 88, 55);
+            color: black;
+        }
 
-    section {
-        padding-top: 5%;
-    }
+        a.header:active {
+            color: rgb(0, 88, 55);
+        }
 
-    h1 {
-        text-align: center;
-        font-size: 150%;
-        font-family: Georgia, serif;
-    }
+        section {
+            padding-top: 5%;
+        }
 
-    a.cart:hover {
-        background-color: rgb(0, 88, 55);
-    }
+        h1 {
+            text-align: center;
+            font-size: 150%;
+            font-family: Georgia, serif;
+        }
 
-    .abutton {
-        text-decoration: none;
-    }
+        a.cart:hover {
+            background-color: rgb(0, 88, 55);
+        }
 
-    ul {
-        position: absolute;
-        border: solid 3px black;
-    }
-    
-    li {
-        color:rgb(0, 88, 55);
-        font-size: 150%;
-    }
+        .abutton {
+            text-decoration: none;
+        }
 
-    h4 {
-        position: relative;
-        font-size: 200%;
-        color: black;
-    }
+        ul {
+            position: absolute;
+            border: solid 3px black;
+        }
 
-    input[type=number]{
-        width: 80px;
-    }
+        li {
+            color: rgb(0, 88, 55);
+            font-size: 150%;
+        }
 
+        h4 {
+            position: relative;
+            font-size: 200%;
+            color: black;
+        }
+
+        input[type=number] {
+            width: 80px;
+        }
     </style>
 </head>
-    <body id="top" onload="init()">
-        <header>
-            <div class="w3-top">
-                <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-                  <a href="index.html" class="w3-bar-item w3-button"><img src="images/Logo.PNG" alt="logo" height="50" width="75"/></a>
-                  <!-- Float links to the right. Hide them on small screens -->
-                  <div class="w3-right w3-hide-small">
+
+<body id="top" onload="init()">
+    <header>
+        <div class="w3-top">
+            <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+                <a href="index.html" class="w3-bar-item w3-button"><img src="images/Logo.PNG" alt="logo" height="50"
+                        width="75" /></a>
+                <!-- Float links to the right. Hide them on small screens -->
+                <div class="w3-right w3-hide-small">
                     <a href="index.html" class="w3-bar-item header">Home</a>
-                    <a href="javascript:savecart()" class="w3-bar-item header">Items</a>
+                    <a href="items.html" class="w3-bar-item header">Items</a>
                     <a href="employee.html" class="w3-bar-item header">Employee</a>
                     <a href="customer.html" class="w3-bar-item header">Customer</a>
-                    <a href="javascript:save()" class="w3-bar-item header">Checkout</a>
-                    <a href="items.html#myList"><img src="images/cart.jpg" alt="cart" height="50" width="60"></a>
+                    <a href="checkout.html" class="w3-bar-item header">Checkout</a>
+                    <a href="cart.html"><img src="images/cart.jpg" alt="cart" height="50" width="60"></a>
                     <button onclick="leave()">Clear Cart</button>
-                  </div>
                 </div>
-              </div>
-            </header>
-    <section>
-        <!--First Row-->
-        <h2 class="h2">Veggies</h2>
-        <!--Corn-->
-        <div class="w3-main w3-content w3-padding">
-            <div class="w3-row-padding w3-padding-16 w3-center" id="food">
-            <div class="w3-quarter">
-                <img src="images/Corn.jpeg" alt="Corn" height="165" style="width:100%">
-                <h3>Corn</h3>
-                <h3>&dollar;0.96</h3>
-                <h6>Enter Quantity: <input type="number" min="1" max="25" id="Corn" size="4"><p id="Cornavailable"></p></h6>
-                <button onclick="checkCorn()">Check Availability</button>
-                <button onclick="addspag()">Add to Cart</button>
-                <button><a href="#myList">Go to Cart</a></button>
-            </div>
-
-            <!--Carrot-->
-            <div class="w3-quarter">
-                <img src="images/Carrot.jpg" alt="Carrot" style="width:101%">
-                <h3>Carrot</h3>
-                <h3>&dollar;0.48</h3>
-                <h6>Enter Quantity: <input type="number" id="Carrot" size="4"><p id="Carrotavailable"></p></h6>
-                <button onclick="checkCarrot();">Check Availability</button>
-                <button onclick="addCarrot()">Add to Cart</button>
-                <button><a href="#myList">Go to Cart</a></button>
             </div>
         </div>
-
-        <!--Second Row-->
-        <h2 class="h2">Fruit</h2>
-        <!--Apple-->
-        <div class="w3-row-padding w3-padding-16 w3-center">
-            <div class="w3-quarter">
-                <img src="images/Apple.jpg" alt="Apple" height="165" style="width:100%">
-                <h3>Apple</h3>
-                <h3>&dollar;0.54</h3>
-                <h6>Enter Quantity: <input type="number" id="Apple" size="4"><p id="Appleavailable"></p></h6>
-                <button onclick="checkApple();">Check Availability</button>
-                <button onclick="addApple()">Add to Cart</button>
-                <button><a href="#myList">Go to Cart</a></button>
-            </div>
-            <!--Banana-->
-            <div class="w3-quarter">
-                <img src="images/Banana.jpg" alt="Banana" height="165" style="width:100%">
-                <h3>Banana</h3>
-                <h3>&dollar;0.57</h3>
-                <h6>Enter Quantity: <input type="number" id="Banana" size="4"><p id="Bananaavailable"></p></h6>
-                <button onclick="checkBanana();">Check Availability</button>
-                <button onclick="addBanana()">Add to Cart</button>
-                <button><a href="#myList">Go to Cart</a></button>
-            </div>
-        </div>
-        
-        <!--Third Row-->
-        <h2 class="h2">Dairy Products</h2>
-        <div class="w3-row-padding w3-padding-16 w3-center">
-            <!--Milk-->
-            <div class="w3-quarter">
-                <img src="images/Milk.jpg" alt="Milk" height="165" style="width:100%">
-                <h3>Milk</h3>
-                <h3>&dollar;4.10</h3>
-                <h6>Enter Quantity: <input type="number" id="Milk" size="4"><p id="Milkavailable"></p></h6>
-                <button onclick="checkMilk();">Check Availability</button>
-                <button onclick="addMilk()">Add to Cart</button>
-                <button><a href="#myList">Go to Cart</a></button>
-            </div>
-            <!--Cheddar Cheese-->
-            <div class="w3-quarter">
-                <img src="images/CheddarCheese.jpeg" alt="CheddarCheese" height="165" style="width:100%">
-                <h3 class="space">Cheddar Cheese</h3>
-                <h3>&dollar;3.76</h3>
-                <h6>Enter Quantity: <input type="number" id="CheddarCheese" size="4"><p id="CheddarCheeseavailable"></p></h6>
-                <button onclick="checkCheddarCheese();">Check Availability</button>
-                <button onclick="addCheddarCheese()">Add to Cart</button>
-                <button><a href="#myList">Go to Cart</a></button>
-            </div>
-        </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <div>
-            <ul id="myList"><h4>Shopping Cart</h4>
-                <button type="button" onclick="save();"><a class="abutton" href="checkout.html">Go to Checkout</a></button>
-                <button type="button"><a class="abutton" href="#top">Continue Shopping</a></button>
-                <button type="button" onclick="leave()">Clear Cart</button>
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <p id="grand"></p>
-            </ul>
-        </div>
-    </section>
-    <section id="database_items">
-
-    </section>
+        <section id="database_items"></section>
+    </header>
 </body>
+
 </html>

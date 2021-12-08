@@ -1,15 +1,8 @@
 <?php
 
-require_once "config.php";
+require_once ".config.php";
 
-if (isset($_SESSION["Employee"]) || isset($_SESSION["Email"]))
-{
-    header('Content-type: application/json');
-    echo json_encode(array("respone" => "Welcome!"));
-    die();
-}
-
-if(!$_SESSION["Employee"])
+if(!$_SESSION["Employee_ID"])
 {
     die();
 }

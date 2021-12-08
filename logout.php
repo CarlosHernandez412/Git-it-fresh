@@ -16,8 +16,8 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 session_unset();
-sesssion_destroy();
-header("Location: login.php");
+session_destroy();
+header("Location: index.html");
 
 ?>
 </body>
