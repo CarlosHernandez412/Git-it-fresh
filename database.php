@@ -85,8 +85,8 @@ if (isset($_POST['login'])) {
     unset($_POST['login']);
     $db = get_connection();
 	$Email = $_POST['email'];
-    $Password = $_POST['password'];
-    $validation = $db->prepare("SELECT * FROM Person Where Email =?");
+    $Password = $_POST['pw'];
+    $validation = $db->prepare("SELECT Client.Email, Person.Password FROM Person NATURAL JOIN Client Where Email =?");
     $validation->bind_param('s', $Email);
     if ($validation->execute()) {
         if (mysqli_stmt_bind_result($validation, $res_Customer_ID, $res_Email, $res_Password, $res_Fname, $res_MI,
@@ -98,7 +98,7 @@ if (isset($_POST['login'])) {
                 $result_count++;
             }
 
-            if ($result_count > 0) {
+            if ($result_count == 0) {
                 $_SESSION["error"] = "Error: Email and/or password is incorrect!";
                 header("Location: error.php");
             }
@@ -106,8 +106,8 @@ if (isset($_POST['login'])) {
                 //Verify user with password
                 $pass = password_verify($Password, $res_Password);
 				if ($pass) {
-					$SESSION['Customer_ID'] = $res_Customer_ID;
-					$SESSION['Email'] = $res_Email;
+					$_SESSION['Customer_ID'] = $res_Customer_ID;
+					$_SESSION['Email'] = $res_Email;
 
 					header("Location: index.html");
 				}
@@ -128,43 +128,46 @@ if (isset($_POST['login'])) {
 if (isset($_POST['emp_login'])) {
     unset($_POST['emp_login']);
     $db = get_connection();
-	$Email = $_POST['email'];
+    $Email = $_POST['email'];
     $Password = $_POST['password'];
-    $validation = $db->prepare("SELECT * FROM Person Where Email =?");
+    $validation = $db->prepare("SELECT Employee.Employee_ID, Employee.Email, Person.Password, Person.Fname FROM Person NATURAL JOIN Employee Where Email =?");
     $validation->bind_param('s', $Email);
     if ($validation->execute()) {
-        if (mysqli_stmt_bind_result($validation, $res_Employee_ID, $res_Email, $res_Password, $res_Fname, $res_MI,
-		$res_LName, $res_PhoneNumber)) {
-
+        if (mysqli_stmt_bind_result($validation, $res_Employee_ID, $res_Email, $res_Password, $res_Fname)) {
+            
             $result_count = 0;
 
             while ($validation->fetch()) {
                 $result_count++;
             }
 
-            if ($result_count > 0) {
+            if ($result_count == 0) {
                 $_SESSION["error"] = "Error: Email and/or password is incorrect!";
                 header("Location: error.php");
-            }
-            else {
+            } else {
                 //Verify user with password
-                $pass = password_verify($Password, $res_Password);
-				if ($pass) {
-					$SESSION['Employee_ID'] = $res_Employee_ID;
-					$SESSION['Email'] = $res_Email;
-
-					header("Location: error.php");
-				}
-                else {
+                //Uncomment following two lines to verify hashed passwords
+                //$pass = password_verify($Password, $res_Password);
+                //if ($pass) {
+                if ($Password == $res_Password) {
+                    $_SESSION['Employee_ID'] = $res_Employee_ID;
+                    $_SESSION['Fname'] = $res_Fname;
+                    $_SESSION['Email'] = $res_Email;
+                
+                    header("Location: index.html");
+                } else {
                     $_SESSION["error"] = "Error: Email and/or password is incorrect!";
                     header("Location: error.php");
                 }
             }
+        } else {
+            echo "Error getting results: " . mysqli_error($db);
+            die();
         }
-		else {
-			echo "Error executing query from Employee login: " . mysqli_error($db);
-			die();
-		}
-	}
+    } else {
+        echo "Error executing query: " . mysqli_error($db);
+        die();
+    }
 }
+
 ?>
