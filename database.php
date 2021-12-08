@@ -25,73 +25,69 @@ if (isset($_POST['StartRegister'])) {
     $db = get_connection();
     $Fname = $_POST['first'];
     $MI = $_POST['mid'];
-	$LName = $_POST['last'];
+    $LName = $_POST['last'];
     $PhoneNumber = $_POST['number'];
-	$Street = $_POST['address'];
+    $Street = $_POST['address'];
     $Zipcode = $_POST['zip'];
-	$City = $_POST['city'];
+    $City = $_POST['city'];
     $State = $_POST['state'];
-	$Email = $_POST['email'];
+    $Email = $_POST['email'];
     $Password = $_POST['password'];
-    if (strlen($Email) == 0 || strlen($Password) == 0) {
-        $_SESSION["error"] = "Email and/or Password cannot be empty!";
+    if (strlen($Fname) == 0 || strlen($LName) == 0 || strlen($PhoneNumber) == 0 || strlen($Street) == 0 ||
+    strlen($Zipcode) == 0 || strlen($City) == 0 || strlen($State) == 0 || strlen($Email) == 0 || strlen($Password) == 0) {
+        $_SESSION["error"] = "Please fill out all (*) required fields!";
         header("Location: customer.html");
     }
-    $validation = $db->prepare("SELECT Client.Customer_ID, Person .* FROM Person NATURAL JOIN Client Where Email =?");
+    $validation = $db->prepare("SELECT Email FROM Client Where Email =?");
     if (!$validation) {
         echo "Error getting result: " . mysqli_error($db);
         die();
     }
     $validation->bind_param('s', $Email);
     if ($validation->execute()) {
-        if (mysqli_stmt_bind_result($validation, $res_Customer_ID, $res_Email, $res_Password, $res_Fname, $res_MI,
-		$res_LName, $res_PhoneNumber, $res_State, $res_City, $res_Zipcode, $res_Street)) {
-
+        if (mysqli_stmt_bind_result($validation, $res_Email)) {
             $result_count = 0;
-
             while ($validation->fetch()) {
                 $result_count++;
             }
-
-            if ($result_count > 0) {
-                $_SESSION["error"] = "Error: Email " . $Email . "already registred";
+            if($result_count > 0) {
+                $_SESSION["error"] = "Error: Email " . $Email . " already registered";
                 header("Location: error.php");
-            }
-            else {
+            } else {
                 echo "Registering!";
                 $hash = password_hash($Password, PASSWORD_DEFAULT);
-				$statement = $db->prepare("CALL customerRegister(?,?,?,?,?,?,?,?,?,?)");
-                $statement->bind_param('ss', $Email, $hash, $res_Fname, $res_MI,
-				$res_LName, $res_PhoneNumber, $res_State, $res_City, $res_Zipcode, $res_Street);
-                if ($statment->execute()) {
+                $statement = $db->prepare("CALL customerRegister(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $statement->bind_param('ssssssssis', $Email, $hash, $Fname, $MI, $LName,
+                    $PhoneNumber, $State, $City, $Zipcode, $Street);
+                if ($statement->execute()) {
                     echo "Registered!";
-                    header("Location: error.php");
-                }
-                else {
+                    header("Location: customer.html");
+                } else {
                     echo "Registration failed: " . mysqli_error($db);
                     die();
                 }
             }
+        } else {
+            echo "Error getting results: " . mysqli_error($db);
+            die();
         }
-		else {
-			echo "Error executing query from registration: " . mysqli_error($db);
-			die();
-		}
-	}
+    } else {
+        echo "Error executing query: " . mysqli_error($db);
+        die();
+    } 
 }
 
 // Customer login
-if (isset($_POST['login'])) {
-    unset($_POST['login']);
+if (isset($_POST['customerlogin'])) {
+    unset($_POST['customerlogin']);
     $db = get_connection();
-	$Email = $_POST['email'];
-    $Password = $_POST['pw'];
-    $validation = $db->prepare("SELECT Client.Email, Person.Password FROM Person NATURAL JOIN Client Where Email =?");
+    $Email = $_POST['log_email'];
+    $Password = $_POST['log_password'];
+    $validation = $db->prepare("SELECT Client.Customer_ID, Client.Email, Person.Password, Person.Fname FROM Person NATURAL JOIN Client Where Email =?");
     $validation->bind_param('s', $Email);
     if ($validation->execute()) {
-        if (mysqli_stmt_bind_result($validation, $res_Customer_ID, $res_Email, $res_Password, $res_Fname, $res_MI,
-		$res_LName, $res_PhoneNumber)) {
-
+        if (mysqli_stmt_bind_result($validation, $res_Customer_ID, $res_Email, $res_Password, $res_Fname)) {
+            
             $result_count = 0;
 
             while ($validation->fetch()) {
@@ -101,27 +97,30 @@ if (isset($_POST['login'])) {
             if ($result_count == 0) {
                 $_SESSION["error"] = "Error: Email and/or password is incorrect!";
                 header("Location: error.php");
-            }
-            else {
+            } else {
                 //Verify user with password
+                //Uncomment following two lines to verify hashed passwords
                 $pass = password_verify($Password, $res_Password);
-				if ($pass) {
-					$_SESSION['Customer_ID'] = $res_Customer_ID;
-					$_SESSION['Email'] = $res_Email;
-
-					header("Location: index.html");
-				}
-                else {
+                if ($pass) {
+                /*if ($Password == $res_Password) {*/
+                    $_SESSION['Customer_ID'] = $res_Customer_ID;
+                    $_SESSION['Fname'] = $res_Fname;
+                    $_SESSION['Email'] = $res_Email;
+                
+                    header("Location: index.html");
+                } else {
                     $_SESSION["error"] = "Error: Email and/or password is incorrect!";
                     header("Location: error.php");
                 }
             }
+        } else {
+            echo "Error getting results: " . mysqli_error($db);
+            die();
         }
-		else {
-			echo "Error executing query from Customer login: " . mysqli_error($db);
-			die();
-		}
-	}
+    } else {
+        echo "Error executing query: " . mysqli_error($db);
+        die();
+    }
 }
 
 // Employee login
@@ -147,9 +146,9 @@ if (isset($_POST['emp_login'])) {
             } else {
                 //Verify user with password
                 //Uncomment following two lines to verify hashed passwords
-                //$pass = password_verify($Password, $res_Password);
-                //if ($pass) {
-                if ($Password == $res_Password) {
+                $pass = password_verify($Password, $res_Password);
+                if ($pass) {
+                //if ($Password == $res_Password) {
                     $_SESSION['Employee_ID'] = $res_Employee_ID;
                     $_SESSION['Fname'] = $res_Fname;
                     $_SESSION['Email'] = $res_Email;
