@@ -1,6 +1,6 @@
 <?php
 
-require_once "config.php";
+require_once ".config.php";
 
 // Get all products and their categories
 if(isset($_POST['GetProducts'])) {
